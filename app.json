@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "pagow",
-    "slug": "pagow",
+    "slug": "plataforma-pagamentos-escrow",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -28,6 +28,12 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "9d220c50-41a1-41dc-8455-ee44e872c7a4"
+      }
+    },
+    "owner": "mapiemamunhe"
   }
 }
