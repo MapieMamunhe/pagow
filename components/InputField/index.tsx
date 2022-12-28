@@ -1,21 +1,29 @@
-import React, { useState } from "react";
+import React, { SetStateAction, useState } from "react";
 import { KeyboardTypeOptions, TextInput, View } from "react-native";
 
 // import { Container } from './styles';
 type propsType = {
   placeHolderText?: String;
-  entryValue?: KeyboardTypeOptions;
+  entryValueType?: KeyboardTypeOptions;
+  handleValue: any;
+  entryValue: string | number;
+  hideEntry?: boolean;
 };
 const InputField: React.FC<propsType> = ({
   placeHolderText = "Campo",
-  entryValue = "default",
+  entryValueType = "default",
+  handleValue,
+  entryValue,
+  hideEntry,
 }) => {
-  const [textInputField, setTextInputField] = useState("");
   return (
     <TextInput
       placeholder={`${placeHolderText}`}
-      value={textInputField}
-      onChangeText={setTextInputField}
+      value={entryValue + ""}
+      onChangeText={(text) => {
+        handleValue(text);
+      }}
+      secureTextEntry={hideEntry}
       style={{
         width: "80%",
         height: 48,
@@ -25,8 +33,11 @@ const InputField: React.FC<propsType> = ({
         borderColor: "#23bc18",
         borderWidth: 2,
         textAlign: "center",
+        fontSize: 20,
+        fontFamily: "Roboto",
+        color: "#6b6565",
       }}
-      keyboardType={entryValue}
+      keyboardType={entryValueType}
     />
   );
 };
