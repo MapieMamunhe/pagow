@@ -5,29 +5,27 @@ import { KeyboardTypeOptions, TextInput, View } from "react-native";
 type propsType = {
   placeHolderText?: String;
   entryValueType?: KeyboardTypeOptions;
-  handleValue: any;
   entryValue: string | number;
   hideEntry?: boolean;
 };
 const InputField: React.FC<propsType> = ({
   placeHolderText = "Campo",
   entryValueType = "default",
-  handleValue,
   entryValue,
   hideEntry,
 }) => {
+  const [inputValue, setInputValue] = useState(entryValue);
   return (
     <TextInput
       placeholder={`${placeHolderText}`}
-      value={entryValue + ""}
+      value={inputValue + ""}
       onChangeText={(text) => {
-        handleValue(text);
+        setInputValue(text);
       }}
       secureTextEntry={hideEntry}
       style={{
         width: "80%",
         height: 48,
-        marginBottom: 41,
         backgroundColor: "#eee",
         borderRadius: 25,
         borderColor: "#23bc18",

@@ -1,5 +1,12 @@
 import React, { useState } from "react";
-import { Button, View, Text } from "react-native";
+import {
+  Button,
+  View,
+  Text,
+  TouchableOpacity,
+  StyleSheet,
+  Image,
+} from "react-native";
 import InputField from "../../components/InputField";
 import login from "./loginFunctions";
 import axios from "axios";
@@ -10,9 +17,9 @@ async function teste() {
     .then((res) => console.log(res.data))
     .catch((err) => console.log(`O erro foi ${err}`));
 }
+const styles = StyleSheet.create({});
 const Login: React.FC = () => {
-  const [cellNumber, setCellNumber] = useState<number>();
-  const [password, setPassword] = useState("");
+  console.log("Fui chamado");
   return (
     <View
       style={{
@@ -22,21 +29,23 @@ const Login: React.FC = () => {
         justifyContent: "center",
       }}
     >
-      <Text>BEM-VINDO! Entre na sua conta.</Text>
+      <View>
+        <Image source={{ uri: "assetsimagessplash.png" }} />
+        <Text>BEM-VINDO! Entre na sua conta.</Text>
+      </View>
       <InputField
         placeHolderText="Telefone"
         entryValueType="numeric"
-        handleValue={setCellNumber}
-        entryValue={cellNumber || ""}
+        entryValue={""}
       />
-      <InputField
-        placeHolderText="Senha"
-        handleValue={setPassword}
-        entryValue={password}
-        hideEntry={true}
-      />
+      <InputField placeHolderText="Senha" entryValue={""} hideEntry={true} />
       <Button title="Login" onPress={() => teste()} />
-      <Text>Não tem uma conta? Resgiste-se</Text>
+      <Text>
+        Não tem uma conta?{" "}
+        <TouchableOpacity>
+          <Text>Registe-se</Text>
+        </TouchableOpacity>
+      </Text>
     </View>
   );
 };
