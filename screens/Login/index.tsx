@@ -11,41 +11,109 @@ import InputField from "../../components/InputField";
 import login from "./loginFunctions";
 import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
+import { NavigationProp, useNavigation } from "@react-navigation/native";
+import { RootStackParamList } from "../../types";
+const placeholder = require("../../assets/images/placeholder.jpg");
 async function teste() {
   axios
     .get("http://192.168.43.201:3000/")
     .then((res) => console.log(res.data))
     .catch((err) => console.log(`O erro foi ${err}`));
 }
-const styles = StyleSheet.create({});
-const Login: React.FC = () => {
-  console.log("Fui chamado");
+const styles = StyleSheet.create({
+  totalCenter: {
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  fullScreen: {
+    flex: 1,
+    backgroundColor: "#fff",
+  },
+  logo: {
+    marginTop: 88,
+    borderRadius: 50,
+    width: 112,
+    height: 104,
+  },
+  welcomeMessage: {
+    marginTop: 19,
+    textAlign: "center",
+    fontSize: 20,
+  },
+  inputFieldGroup: {
+    marginVertical: 21,
+  },
+  inputField: {
+    marginTop: 21,
+  },
+  button: {
+    width: 166,
+    height: 32,
+    backgroundColor: "#23BC18",
+    borderRadius: 15,
+  },
+  defaultText: {
+    color: "#262525",
+    fontSize: 20,
+    // fontFamily: "Arial" TODO mudar a fonte para roboto
+  },
+});
+type Props = {
+  navigation?: unknown;
+};
+const Login: React.FC<Props> = () => {
+  const navigation = useNavigation<NavigationProp<RootStackParamList>>();
   return (
     <View
       style={{
-        backgroundColor: "#fff",
-        flex: 1,
-        alignItems: "center",
-        justifyContent: "center",
+        ...styles.fullScreen,
       }}
     >
-      <View>
-        <Image source={{ uri: "assetsimagessplash.png" }} />
-        <Text>BEM-VINDO! Entre na sua conta.</Text>
+      {/**Mensagem de boas vindas */}
+      <View style={{ ...styles.totalCenter }}>
+        <Image source={placeholder} style={{ ...styles.logo }} />
+        <Text style={{ ...styles.welcomeMessage }}>
+          BEM-VINDO!{"\n"} Entre na sua conta.
+        </Text>
       </View>
-      <InputField
-        placeHolderText="Telefone"
-        entryValueType="numeric"
-        entryValue={""}
-      />
-      <InputField placeHolderText="Senha" entryValue={""} hideEntry={true} />
-      <Button title="Login" onPress={() => teste()} />
-      <Text>
-        Não tem uma conta?{" "}
-        <TouchableOpacity>
-          <Text>Registe-se</Text>
+      {/**Formulario de Login */}
+      <View style={{ ...styles.inputFieldGroup }}>
+        {/**Telefone*/}
+        <View style={{ ...styles.inputField, ...styles.totalCenter }}>
+          <InputField
+            placeHolderText="Telefone"
+            entryValueType="numeric"
+            entryValue={""}
+          />
+        </View>
+        {/**Senha*/}
+        <View style={{ ...styles.inputField, ...styles.totalCenter }}>
+          <InputField
+            placeHolderText="Senha"
+            entryValue={""}
+            hideEntry={true}
+          />
+        </View>
+      </View>
+      {/**Entrar*/}
+      <View style={{ ...styles.totalCenter }}>
+        <TouchableOpacity style={{ ...styles.button, ...styles.totalCenter }}>
+          <Text style={{ ...styles.defaultText }}>Entrar</Text>
         </TouchableOpacity>
-      </Text>
+      </View>
+
+      {/**Registe-se */}
+      <TouchableOpacity
+        style={{ ...styles.totalCenter, ...styles.welcomeMessage }}
+        onPress={() => navigation.navigate("Register")}
+      >
+        <Text>
+          Não tem uma conta?
+          <Text style={{ textAlign: "center", color: "#23BC18" }}>
+            Registe-se
+          </Text>
+        </Text>
+      </TouchableOpacity>
     </View>
   );
 };
