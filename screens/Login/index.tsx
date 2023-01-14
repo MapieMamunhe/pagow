@@ -91,7 +91,10 @@ const Login: React.FC<Props> = () => {
       </View>
       {/**Entrar*/}
       <View style={{ ...styles.totalCenter }}>
-        <Button message="Entrar" />
+        <Button
+          handlePress={() => console.log("TODO Login")}
+          message={"Entrar"}
+        />
       </View>
       {/**Registe-se */}
       <TouchableOpacity
