@@ -1,7 +1,14 @@
 import React, { useState } from "react";
-import { View, Text, TouchableOpacity, StyleSheet, Image } from "react-native";
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  StyleSheet,
+  Image,
+  KeyboardAvoidingView,
+  Platform,
+} from "react-native";
 import InputField from "../../components/InputField";
-import login from "./loginFunctions";
 import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
 import { NavigationProp, useNavigation } from "@react-navigation/native";
@@ -52,10 +59,9 @@ type Props = {
 const Login: React.FC<Props> = () => {
   const navigation = useNavigation<NavigationProp<RootStackParamList>>();
   return (
-    <View
-      style={{
-        ...styles.fullScreen,
-      }}
+    <KeyboardAvoidingView
+      behavior={Platform.OS === "ios" ? "padding" : "height"}
+      style={{ ...styles.fullScreen }}
     >
       {/**Mensagem de boas vindas */}
       <View style={{ ...styles.totalCenter }}>
@@ -99,7 +105,7 @@ const Login: React.FC<Props> = () => {
           </Text>
         </Text>
       </TouchableOpacity>
-    </View>
+    </KeyboardAvoidingView>
   );
 };
 export default Login;

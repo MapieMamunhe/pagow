@@ -19,10 +19,14 @@ const styles = StyleSheet.create({
 });
 type Props = {
   message: string;
+  handlePress: VoidFunction;
 };
-const Button: React.FC<Props> = ({ message }) => {
+const Button: React.FC<Props> = ({ message, handlePress }) => {
   return (
-    <TouchableOpacity style={{ ...styles.button }}>
+    <TouchableOpacity
+      style={{ ...styles.button }}
+      onPress={() => handlePress()}
+    >
       <Text style={{ ...styles.defaultText }}>{message}</Text>
     </TouchableOpacity>
   );

@@ -93,10 +93,13 @@ const Register: React.FC = () => {
               />
             </View>
             <View style={{ alignItems: "center" }}>
-              <Button message={"Registar"} />
+              <Button
+                message={"Registar"}
+                handlePress={() => console.log("registado")}
+              />
             </View>
           </View>
-          {/**Registe-se */}
+          {/**Entre */}
 
           <View
             style={{
@@ -106,7 +109,7 @@ const Register: React.FC = () => {
             }}
           >
             <Text>Já tem uma conta?</Text>
-            <TouchableOpacity onPress={() => navigation.navigate("Register")}>
+            <TouchableOpacity onPress={() => navigation.goBack()}>
               <Text style={{ textAlign: "center", color: "#23BC18" }}>
                 Clique aqui para entrar
               </Text>
