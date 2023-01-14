@@ -1,12 +1,5 @@
 import React, { useState } from "react";
-import {
-  Button,
-  View,
-  Text,
-  TouchableOpacity,
-  StyleSheet,
-  Image,
-} from "react-native";
+import { View, Text, TouchableOpacity, StyleSheet, Image } from "react-native";
 import InputField from "../../components/InputField";
 import login from "./loginFunctions";
 import axios from "axios";
@@ -14,6 +7,7 @@ import { useQuery } from "@tanstack/react-query";
 import { NavigationProp, useNavigation } from "@react-navigation/native";
 import { RootStackParamList } from "../../types";
 const placeholder = require("../../assets/images/placeholder.jpg");
+import Button from "../../components/Button";
 async function teste() {
   axios
     .get("http://192.168.43.201:3000/")
@@ -45,12 +39,6 @@ const styles = StyleSheet.create({
   },
   inputField: {
     marginTop: 21,
-  },
-  button: {
-    width: 166,
-    height: 32,
-    backgroundColor: "#23BC18",
-    borderRadius: 15,
   },
   defaultText: {
     color: "#262525",
@@ -97,11 +85,8 @@ const Login: React.FC<Props> = () => {
       </View>
       {/**Entrar*/}
       <View style={{ ...styles.totalCenter }}>
-        <TouchableOpacity style={{ ...styles.button, ...styles.totalCenter }}>
-          <Text style={{ ...styles.defaultText }}>Entrar</Text>
-        </TouchableOpacity>
+        <Button message="Entrar" />
       </View>
-
       {/**Registe-se */}
       <TouchableOpacity
         style={{ ...styles.totalCenter, ...styles.welcomeMessage }}

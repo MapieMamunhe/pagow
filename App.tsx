@@ -18,7 +18,11 @@ export default function App() {
       <NavigationContainer>
         <Stack.Navigator initialRouteName="Login">
           <Stack.Screen name="Login" component={Login} />
-          <Stack.Screen name="Register" component={Register} />
+          <Stack.Screen
+            options={{ headerShown: false }}
+            name="Register"
+            component={Register}
+          />
         </Stack.Navigator>
       </NavigationContainer>
     </QueryClientProvider>

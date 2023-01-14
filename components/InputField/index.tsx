@@ -7,12 +7,18 @@ type propsType = {
   entryValueType?: KeyboardTypeOptions;
   entryValue: string | number;
   hideEntry?: boolean;
+  fieldWidth?: number | string;
+  fieldHeight?: number;
+  fieldBorder?: number;
 };
 const InputField: React.FC<propsType> = ({
   placeHolderText = "Campo",
   entryValueType = "default",
   entryValue,
   hideEntry,
+  fieldWidth = "80%",
+  fieldHeight = 48,
+  fieldBorder = 25,
 }) => {
   const [inputValue, setInputValue] = useState(entryValue);
   return (
@@ -24,10 +30,10 @@ const InputField: React.FC<propsType> = ({
       }}
       secureTextEntry={hideEntry}
       style={{
-        width: "80%",
-        height: 48,
+        width: fieldWidth,
+        height: fieldHeight,
         backgroundColor: "#eee",
-        borderRadius: 25,
+        borderRadius: fieldBorder,
         borderColor: "#23bc18",
         borderWidth: 2,
         textAlign: "center",
