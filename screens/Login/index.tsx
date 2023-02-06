@@ -15,6 +15,7 @@ import { NavigationProp, useNavigation } from "@react-navigation/native";
 import { RootStackParamList } from "../../types";
 const placeholder = require("../../assets/images/placeholder.jpg");
 import Button from "../../components/Button";
+import login from "./loginFunctions";
 async function teste() {
   axios
     .get("http://192.168.43.201:3000/")
@@ -58,6 +59,9 @@ type Props = {
 };
 const Login: React.FC<Props> = () => {
   const navigation = useNavigation<NavigationProp<RootStackParamList>>();
+  //Login fields
+  const [email, setEmail] = useState("");
+  const [senha, setSenha] = useState("");
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === "ios" ? "padding" : "height"}
@@ -77,24 +81,23 @@ const Login: React.FC<Props> = () => {
           <InputField
             placeHolderText="Telefone"
             entryValueType="numeric"
-            entryValue={""}
+            entryValue={email}
+            updateEntryFunction={setEmail}
           />
         </View>
         {/**Senha*/}
         <View style={{ ...styles.inputField, ...styles.totalCenter }}>
           <InputField
             placeHolderText="Senha"
-            entryValue={""}
+            entryValue={senha}
+            updateEntryFunction={setSenha}
             hideEntry={true}
           />
         </View>
       </View>
       {/**Entrar*/}
       <View style={{ ...styles.totalCenter }}>
-        <Button
-          handlePress={() => console.log("TODO Login")}
-          message={"Entrar"}
-        />
+        <Button handlePress={() => login(email, senha)} message={"Entrar"} />
       </View>
       {/**Registe-se */}
       <TouchableOpacity

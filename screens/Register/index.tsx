@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo, useState } from "react";
 import {
   View,
   Text,
@@ -15,6 +15,7 @@ import InputField from "../../components/InputField";
 import Button from "../../components/Button";
 import { NavigationProp, useNavigation } from "@react-navigation/native";
 import { RootStackParamList } from "../../types";
+import { auth } from "../../firebase";
 const styles = StyleSheet.create({
   page: {
     flex: 1,
@@ -29,9 +30,25 @@ const styles = StyleSheet.create({
     marginBottom: 32,
   },
 });
+
 const Register: React.FC = () => {
   const navigation = useNavigation<NavigationProp<RootStackParamList>>();
-
+  //Field area
+  const [name, setName] = useState("");
+  const [apelido, setApelido] = useState("");
+  const [email, setEmail] = useState("");
+  const [senha, setSenha] = useState("");
+  const [confirmarSenha, setConfirmarSenha] = useState("");
+  console.log("name : ", name);
+  const handleSignUp = () => {
+    auth
+      .createUserWithEmailAndPassword(auth.getAuth(), email, senha)
+      .then((userCredentials) => {
+        const user = userCredentials.user;
+        console.log(user.email);
+      })
+      .catch((err) => alert(err.message));
+  };
   return (
     <SafeAreaView style={styles.page}>
       <View>
@@ -53,14 +70,16 @@ const Register: React.FC = () => {
             <InputField
               fieldWidth={"43.75%"}
               fieldBorder={13}
-              entryValue={""}
+              entryValue={name}
+              updateEntryFunction={setName}
               placeHolderText={"Primeiro Nome"}
             />
             <View style={{ marginRight: 18, backgroundColor: "red" }}></View>
             <InputField
+              entryValue={apelido}
+              updateEntryFunction={setApelido}
               fieldBorder={13}
               fieldWidth={"43.75%"}
-              entryValue={""}
               placeHolderText={"Ultimo Nome"}
             />
           </View>
@@ -69,16 +88,18 @@ const Register: React.FC = () => {
               <InputField
                 fieldBorder={13}
                 fieldWidth={"93.75%"}
-                entryValue={""}
-                entryValueType={"phone-pad"}
-                placeHolderText={"Telefone"}
+                entryValue={email}
+                updateEntryFunction={setEmail}
+                entryValueType={"email-address"}
+                placeHolderText={"Email"}
               />
             </View>
             <View style={{ ...styles.spaceFormData }}>
               <InputField
                 fieldBorder={13}
                 fieldWidth={"93.75%"}
-                entryValue={""}
+                entryValue={senha}
+                updateEntryFunction={setSenha}
                 hideEntry={true}
                 placeHolderText={"Senha"}
               />
@@ -88,15 +109,13 @@ const Register: React.FC = () => {
                 fieldBorder={13}
                 hideEntry={true}
                 fieldWidth={"93.75%"}
-                entryValue={""}
+                entryValue={confirmarSenha}
+                updateEntryFunction={setConfirmarSenha}
                 placeHolderText={"Confirmar senha"}
               />
             </View>
             <View style={{ alignItems: "center" }}>
-              <Button
-                message={"Registar"}
-                handlePress={() => console.log("registado")}
-              />
+              <Button message={"Registar"} handlePress={handleSignUp} />
             </View>
           </View>
           {/**Entre */}
@@ -121,4 +140,4 @@ const Register: React.FC = () => {
   );
 };
 
-export default Register;
+export default memo(Register);
