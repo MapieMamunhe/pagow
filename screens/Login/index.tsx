@@ -79,8 +79,8 @@ const Login: React.FC<Props> = () => {
         {/**Telefone*/}
         <View style={{ ...styles.inputField, ...styles.totalCenter }}>
           <InputField
-            placeHolderText="Telefone"
-            entryValueType="numeric"
+            placeHolderText="Email"
+            entryValueType="email-address"
             entryValue={email}
             updateEntryFunction={setEmail}
           />
