@@ -15,6 +15,7 @@ type propsType = {
   fieldWidth?: number | string;
   fieldHeight?: number;
   fieldBorder?: number;
+  charLength?: number;
   updateEntryFunction: React.Dispatch<string>;
 };
 
@@ -27,12 +28,14 @@ const InputField: React.FC<propsType> = ({
   fieldWidth = "80%",
   fieldHeight = 48,
   fieldBorder = 25,
+  charLength = 255,
 }): JSX.Element => {
   return (
     <>
       <TextInput
         placeholder={`${placeHolderText}`}
         value={entryValue + ``}
+        maxLength={charLength}
         onChangeText={(text) => {
           updateEntryFunction(text);
         }}

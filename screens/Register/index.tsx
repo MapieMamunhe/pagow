@@ -37,6 +37,7 @@ const Register: React.FC = () => {
   const [name, setName] = useState("");
   const [apelido, setApelido] = useState("");
   const [email, setEmail] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
   const [senha, setSenha] = useState("");
   const [confirmarSenha, setConfirmarSenha] = useState("");
   console.log("name : ", name);
@@ -92,6 +93,17 @@ const Register: React.FC = () => {
                 updateEntryFunction={setEmail}
                 entryValueType={"email-address"}
                 placeHolderText={"Email"}
+              />
+            </View>
+            <View style={{ ...styles.spaceFormData }}>
+              <InputField
+                fieldBorder={13}
+                fieldWidth={"93.75%"}
+                entryValue={phoneNumber}
+                updateEntryFunction={setPhoneNumber}
+                entryValueType={"number-pad"}
+                placeHolderText={"Telefone"}
+                charLength={9}
               />
             </View>
             <View style={{ ...styles.spaceFormData }}>
