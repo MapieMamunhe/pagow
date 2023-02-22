@@ -8,7 +8,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import Register from "./screens/Register";
 import { RootStackParamList } from "./types";
 import { auth } from "./firebase";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Home from "./screens/Home";
 const queryClient = new QueryClient();
 
