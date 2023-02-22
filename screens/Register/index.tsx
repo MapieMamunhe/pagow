@@ -16,6 +16,7 @@ import Button from "../../components/Button";
 import { NavigationProp, useNavigation } from "@react-navigation/native";
 import { RootStackParamList } from "../../types";
 import { auth } from "../../firebase";
+import handleSignUp from "./registerFunctions";
 const styles = StyleSheet.create({
   page: {
     flex: 1,
@@ -40,16 +41,7 @@ const Register: React.FC = () => {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [senha, setSenha] = useState("");
   const [confirmarSenha, setConfirmarSenha] = useState("");
-  console.log("name : ", name);
-  const handleSignUp = () => {
-    auth
-      .createUserWithEmailAndPassword(auth.getAuth(), email, senha)
-      .then((userCredentials) => {
-        const user = userCredentials.user;
-        console.log(user.email);
-      })
-      .catch((err) => alert(err.message));
-  };
+
   return (
     <SafeAreaView style={styles.page}>
       <View>
@@ -127,7 +119,10 @@ const Register: React.FC = () => {
               />
             </View>
             <View style={{ alignItems: "center" }}>
-              <Button message={"Registar"} handlePress={handleSignUp} />
+              <Button
+                message={"Registar"}
+                handlePress={() => handleSignUp(email, senha)}
+              />
             </View>
           </View>
           {/**Entre */}
