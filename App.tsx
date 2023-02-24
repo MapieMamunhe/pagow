@@ -6,7 +6,7 @@ import {
 import Login from "./screens/Login";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import Register from "./screens/Register";
-import { RootStackParamList } from "./types";
+import { RootStackParamList } from "./generalTypes";
 import { auth } from "./firebase";
 import React, { useEffect, useState } from "react";
 import Home from "./screens/Home";

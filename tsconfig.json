@@ -8,6 +8,5 @@
     "sourceMap": true,
     "noEmit": true,
     "strict": true
-  },
-  "include": ["types.d.ts"]
+  }
 }

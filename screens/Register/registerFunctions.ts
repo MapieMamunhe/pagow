@@ -1,6 +1,7 @@
 import { auth } from "../../firebase";
-
+import { BACKEND_URL } from "../../env";
 import { userDataType } from "../../generalTypes";
+import axios, { ResponseType } from "axios";
 const handleSignUp = (email: string, senha: string) => {
   auth
     .createUserWithEmailAndPassword(auth.getAuth(), email, senha)
@@ -11,12 +12,11 @@ const handleSignUp = (email: string, senha: string) => {
     .catch((err) => alert(err.message));
 };
 
-const saveUserPaGow = (userData: userDataType) => {
-  // fetch(BACKEND_URL, {
-  //   method: "POST",
-  //   body: userData,
-  // });
-  //const API_URL = Constants.manifest?.extra?.apiKey;
+const saveUserPaGow = async (userData: userDataType) => {
+  const { data } = await axios.post(`${BACKEND_URL}/user`, {
+    userData,
+  });
+  console.log("dados dos utilizadores", data);
 };
 
 export { saveUserPaGow };
