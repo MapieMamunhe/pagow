@@ -10,9 +10,8 @@ import {
 } from "react-native";
 import InputField from "../../components/InputField";
 import axios from "axios";
-import { useQuery } from "@tanstack/react-query";
 import { NavigationProp, useNavigation } from "@react-navigation/native";
-import { RootStackParamList } from "../../types";
+import { RootStackParamList } from "../../generalTypes";
 const placeholder = require("../../assets/images/placeholder.jpg");
 import Button from "../../components/Button";
 import login from "./loginFunctions";
@@ -38,15 +37,15 @@ const styles = StyleSheet.create({
     height: 104,
   },
   welcomeMessage: {
-    marginTop: 19,
+    marginTop: "2%",
     textAlign: "center",
     fontSize: 20,
   },
   inputFieldGroup: {
-    marginVertical: 21,
+    marginVertical: "4%",
   },
   inputField: {
-    marginTop: 21,
+    marginTop: "4%",
   },
   defaultText: {
     color: "#262525",
