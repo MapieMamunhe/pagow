@@ -15,12 +15,7 @@ import { RootStackParamList } from "../../generalTypes";
 const placeholder = require("../../assets/images/placeholder.jpg");
 import Button from "../../components/Button";
 import login from "./loginFunctions";
-async function teste() {
-  axios
-    .get("http://192.168.43.201:3000/")
-    .then((res) => console.log(res.data))
-    .catch((err) => console.log(`O erro foi ${err}`));
-}
+
 const styles = StyleSheet.create({
   totalCenter: {
     alignItems: "center",
@@ -98,6 +93,7 @@ const Login: React.FC<Props> = () => {
       <View style={{ ...styles.totalCenter }}>
         <Button handlePress={() => login(email, senha)} message={"Entrar"} />
       </View>
+
       {/**Registe-se */}
       <TouchableOpacity
         style={{ ...styles.totalCenter, ...styles.welcomeMessage }}

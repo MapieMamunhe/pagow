@@ -1,5 +1,4 @@
 import { auth } from "../../firebase";
-import Config from "react-native-config";
 
 import { userDataType } from "../../generalTypes";
 const handleSignUp = (email: string, senha: string) => {
@@ -17,9 +16,7 @@ const saveUserPaGow = (userData: userDataType) => {
   //   method: "POST",
   //   body: userData,
   // });
-
   //const API_URL = Constants.manifest?.extra?.apiKey;
-  console.log(Config.API_URL); // "https://api.meuapp.com"
 };
 
 export { saveUserPaGow };
