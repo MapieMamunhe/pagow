@@ -10,6 +10,7 @@ import { RootStackParamList } from "./types";
 import { auth } from "./firebase";
 import React, { useEffect, useState } from "react";
 import Home from "./screens/Home";
+
 const queryClient = new QueryClient();
 
 const AuthStack = createNativeStackNavigator<RootStackParamList>();
