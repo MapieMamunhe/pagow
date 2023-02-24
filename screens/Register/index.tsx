@@ -4,10 +4,10 @@ import {
   Text,
   StatusBar,
   StyleSheet,
-  SafeAreaView,
   TouchableOpacity,
   KeyboardAvoidingView,
   Platform,
+  ScrollView,
 } from "react-native";
 
 import Header from "../../components/Header";
@@ -17,6 +17,7 @@ import { NavigationProp, useNavigation } from "@react-navigation/native";
 import { RootStackParamList } from "../../generalTypes";
 import { auth } from "../../firebase";
 import handleSignUp from "./registerFunctions";
+import { SafeAreaView } from "react-native-safe-area-context";
 const styles = StyleSheet.create({
   page: {
     flex: 1,
@@ -47,7 +48,7 @@ const Register: React.FC = () => {
       <View>
         <Header />
       </View>
-      <View style={styles.form}>
+      <ScrollView style={styles.form}>
         <Text style={{ marginBottom: "6%", fontSize: 30, fontWeight: "bold" }}>
           Registe-se
         </Text>
@@ -140,7 +141,7 @@ const Register: React.FC = () => {
             </Text>
           </TouchableOpacity>
         </View>
-      </View>
+      </ScrollView>
     </SafeAreaView>
   );
 };
