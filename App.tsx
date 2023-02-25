@@ -10,6 +10,7 @@ import { RootStackParamList } from "./generalTypes";
 import { auth } from "./firebase";
 import React, { useEffect, useState } from "react";
 import Home from "./screens/Home";
+import { View } from "react-native";
 
 const queryClient = new QueryClient();
 
