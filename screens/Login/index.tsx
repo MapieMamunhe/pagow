@@ -4,8 +4,6 @@ import {
   Text,
   TouchableOpacity,
   Image,
-  KeyboardAvoidingView,
-  Platform,
   SafeAreaView,
   ScrollView,
 } from "react-native";
@@ -15,7 +13,7 @@ import { RootStackParamList } from "../../generalTypes";
 const placeholder = require("../../assets/images/placeholder.jpg");
 import Button from "../../components/Button";
 import login from "./loginFunctions";
-import formFields, { registerStyles } from "../../styles/general";
+import { registerStyles } from "../../styles/general";
 
 const Login: React.FC = () => {
   const navigation = useNavigation<NavigationProp<RootStackParamList>>();

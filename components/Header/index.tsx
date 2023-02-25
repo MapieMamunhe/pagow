@@ -4,7 +4,7 @@ const placeholder = require("../../assets/images/placeholder.jpg");
 const styles = StyleSheet.create({
   logo: {
     borderRadius: 50,
-    width: 64,
+    width: "20%",
     height: 63,
   },
 });
