@@ -7,6 +7,7 @@ const formFields = StyleSheet.create({
     marginTop: StatusBar.currentHeight,
     marginLeft: "6%",
     marginRight: "4%",
+    marginBottom: "4%",
   },
 });
 const registerStyles = StyleSheet.create({

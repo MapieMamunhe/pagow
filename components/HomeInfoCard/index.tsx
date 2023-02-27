@@ -1,14 +1,14 @@
 import {StyleSheet, Text, View} from "react-native";
 import React from "react";
 
-const Card = ({ title, data1, data2, data3 }:{title:string, data1:string, data2:string, data3:string }) => {
+const HomeInfoCard = () => {
     return (
         <View style={styles.card}>
-            <Text style={styles.title}>{title}</Text>
+            <Text style={styles.title}>Contractos</Text>
             <View style={styles.dataContainer}>
-                <Text style={styles.data}>{data1}</Text>
-                <Text style={styles.data}>{data2}</Text>
-                <Text style={styles.data}>{data3}</Text>
+                <Text style={styles.data}>Abertos: {`2`}</Text>
+                <Text style={styles.data}>Fechados: {`2`}</Text>
+                <Text style={styles.data}>Pedidos: {`2`}</Text>
             </View>
         </View>
     );
@@ -39,4 +39,4 @@ const styles = StyleSheet.create({
         marginBottom: 5,
     },
 });
-export default Card;
+export default HomeInfoCard;

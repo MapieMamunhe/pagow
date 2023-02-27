@@ -11,5 +11,12 @@ type userDataType = {
   lastName: string;
   email: string;
   cellphone: string;
+  password?:string;
 };
-export { userDataType };
+type apiResponseType = {
+  status: Number;
+  success: boolean;
+  message: String;
+  data: unknown[];
+};
+export { userDataType, apiResponseType };

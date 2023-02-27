@@ -2,11 +2,8 @@ import React, { memo, useState } from "react";
 import {
   View,
   Text,
-  StatusBar,
   StyleSheet,
   TouchableOpacity,
-  KeyboardAvoidingView,
-  Platform,
   ScrollView,
 } from "react-native";
 
@@ -17,6 +14,7 @@ import { NavigationProp, useNavigation } from "@react-navigation/native";
 import { RootStackParamList } from "../../generalTypes";
 import handleSignUp from "./registerFunctions";
 import { SafeAreaView } from "react-native-safe-area-context";
+import Spinner from 'react-native-loading-spinner-overlay';
 import formFields from "../../styles/general";
 const styles = StyleSheet.create({
   page: {
@@ -35,15 +33,19 @@ const styles = StyleSheet.create({
 const Register: React.FC = () => {
   const navigation = useNavigation<NavigationProp<RootStackParamList>>();
   //Field area
-  const [name, setName] = useState("");
-  const [apelido, setApelido] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
-  const [senha, setSenha] = useState("");
-  const [confirmarSenha, setConfirmarSenha] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [isLoading, setLoading] = useState(false);
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "#fff" }}>
+      {/*Tela de Loading*/}
+      <Spinner visible={isLoading} textContent={"Aguardando o registro"} />
+
       <View style={formFields.pageFullScreen}>
         <View>
           <Header />
@@ -64,15 +66,15 @@ const Register: React.FC = () => {
             <InputField
               fieldWidth={"43.75%"}
               fieldBorder={13}
-              entryValue={name}
-              updateEntryFunction={setName}
+              entryValue={firstName}
+              updateEntryFunction={setFirstName}
               placeHolderText={"Primeiro Nome"}
             />
             {/* Espaco entre os nomes */}
             <View style={{ marginRight: "6%", backgroundColor: "red" }}></View>
             <InputField
-              entryValue={apelido}
-              updateEntryFunction={setApelido}
+              entryValue={lastName}
+              updateEntryFunction={setLastName}
               fieldBorder={13}
               fieldWidth={"43.75%"}
               placeHolderText={"Ultimo Nome"}
@@ -104,8 +106,8 @@ const Register: React.FC = () => {
               <InputField
                 fieldBorder={13}
                 fieldWidth={"93.75%"}
-                entryValue={senha}
-                updateEntryFunction={setSenha}
+                entryValue={password}
+                updateEntryFunction={setPassword}
                 hideEntry={true}
                 placeHolderText={"Senha"}
               />
@@ -115,15 +117,26 @@ const Register: React.FC = () => {
                 fieldBorder={13}
                 hideEntry={true}
                 fieldWidth={"93.75%"}
-                entryValue={confirmarSenha}
-                updateEntryFunction={setConfirmarSenha}
-                placeHolderText={"Confirmar senha"}
+                entryValue={confirmPassword}
+                updateEntryFunction={setConfirmPassword}
+                placeHolderText={"Confirmar password"}
               />
             </View>
             <View style={{ alignItems: "center" }}>
               <Button
                 message={"Registar"}
-                handlePress={() => handleSignUp(email, senha)}
+                handlePress={() => {
+                  setLoading((prev)=> !prev);
+                  handleSignUp(
+                      {
+                        email: email, password: password,
+                        cellphone: phoneNumber, firstName: firstName,
+                        lastName: lastName
+                      }
+                      ).then(
+                      ()=> setLoading(prev=>!prev)
+                  )
+                }}
               />
             </View>
           </View>

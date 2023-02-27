@@ -14,14 +14,18 @@ const placeholder = require("../../assets/images/placeholder.jpg");
 import Button from "../../components/Button";
 import login from "./loginFunctions";
 import { registerStyles } from "../../styles/general";
+import Spinner from "react-native-loading-spinner-overlay";
 
 const Login: React.FC = () => {
   const navigation = useNavigation<NavigationProp<RootStackParamList>>();
   //Login fields
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
+  const [isLoading, setLoading] = useState(false);
+
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "#fff" }}>
+      <Spinner visible={isLoading} textContent={"Por favor aguarde..."} />
       <ScrollView>
         {/**Mensagem de boas vindas */}
         <View style={{ ...registerStyles.totalCenter }}>
@@ -63,7 +67,12 @@ const Login: React.FC = () => {
         </View>
         {/**Entrar*/}
         <View style={{ ...registerStyles.totalCenter }}>
-          <Button handlePress={() => login(email, senha)} message={"Entrar"} />
+          <Button handlePress={() => {
+            setLoading(prev=>!prev);
+            login(email, senha).then(
+                ()=> setLoading(prev=>!prev)
+            );
+          }} message={"Entrar"} />
         </View>
 
         {/**Registe-se */}
